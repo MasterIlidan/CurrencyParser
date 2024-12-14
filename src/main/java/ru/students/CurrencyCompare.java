@@ -8,10 +8,9 @@ import java.nio.charset.StandardCharsets;
 
 public class CurrencyCompare {
     public static void main(String[] args) {
-        JSONRetriever jsonRetriever = new JSONRetriever();
         String retrievedJSON;
         try {
-            retrievedJSON = jsonRetriever.retrieveJSON();
+            retrievedJSON = JSONRetriever.retrieveJSON();
         } catch (IOException e) {
             throw new RuntimeException("Ошибка во время загрузки курсов",e);
         }

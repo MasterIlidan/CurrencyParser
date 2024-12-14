@@ -41,7 +41,7 @@ public class ExcelExport {
         }
 
         //Записываем книгу Excel в файл
-        String filepath = "./example.xlsx";
+        String filepath = "./currencies.xlsx";
         try (FileOutputStream outputStream = new FileOutputStream(filepath)) {
             workbook.write(outputStream);
         } catch (IOException e) {

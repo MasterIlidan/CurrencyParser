@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class JSONRetriever {
-    public String retrieveJSON() throws IOException {
+    public static String retrieveJSON() throws IOException {
         InputStream inUrl = new URL("https://www.cbr-xml-daily.ru/latest.js").openStream();
         String retrievedJSON = readAllByByte(inUrl);
 
