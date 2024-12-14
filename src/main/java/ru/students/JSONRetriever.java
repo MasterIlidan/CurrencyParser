@@ -10,10 +10,12 @@ public class JSONRetriever {
     public static void main(String[] args) throws IOException, ParseException {
         InputStream inUrl = new URL("https://www.cbr-xml-daily.ru/latest.js").openStream();
         String retrievedJSON = readAllByByte(inUrl);
-        saveRetrievedJSON(retrievedJSON);
         JSONParser currencyParser = new JSONParser(retrievedJSON);
         ExcelExport excelExport = new ExcelExport(currencyParser.currencyToRUB, currencyParser.RUBtoCurrency);
+        saveRetrievedJSON(retrievedJSON);
+        excelExport.exportToExcel();
         inUrl.close();
+        CurrencyComparator.compareCurrencies(currencyParser);
         //JSONObject jsonObject = parser.parse(inUrl)
     }
 

@@ -18,7 +18,6 @@ public class ExcelExport {
                 HashMap<String, Double> RUBToCurrency) {
         this.RUBToCurrency = RUBToCurrency;
         this.currencyToRUB = currencyToRUB;
-        exportToExcel();
     }
 
     public void exportToExcel() {
@@ -43,7 +42,7 @@ public class ExcelExport {
 
         //Записываем книгу Excel в файл
         String filepath = "./example.xlsx";
-        try (FileOutputStream outputStream = new FileOutputStream(filepath);) {
+        try (FileOutputStream outputStream = new FileOutputStream(filepath)) {
             workbook.write(outputStream);
         } catch (IOException e) {
             e.printStackTrace();

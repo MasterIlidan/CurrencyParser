@@ -1,7 +1,6 @@
 package ru.students;
 
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
@@ -9,14 +8,12 @@ import java.util.HashMap;
 public class JSONParser {
 
 
-    private org.json.simple.parser.JSONParser parser;
     HashMap<String,Double> RUBtoCurrency = new HashMap<>();
     HashMap<String,Double> currencyToRUB = new HashMap<>();
-    private JSONObject root;
-    private JSONObject rates;
+    private final JSONObject rates;
     JSONParser(String json) throws ParseException {
-        parser = new org.json.simple.parser.JSONParser();
-        root = (JSONObject) parser.parse(json);
+        org.json.simple.parser.JSONParser parser = new org.json.simple.parser.JSONParser();
+        JSONObject root = (JSONObject) parser.parse(json);
         rates = (JSONObject) root.get("rates");
         getAllRates();
     }
