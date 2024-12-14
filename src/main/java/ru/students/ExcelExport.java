@@ -45,6 +45,7 @@ public class ExcelExport {
         try (FileOutputStream outputStream = new FileOutputStream(filepath)) {
             workbook.write(outputStream);
         } catch (IOException e) {
+            System.out.println("Ошибка экспорта в Excel");
             e.printStackTrace();
         }
     }

@@ -1,22 +1,18 @@
 package ru.students;
 
-import org.json.simple.parser.ParseException;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 public class JSONRetriever {
-    public static void main(String[] args) throws IOException, ParseException {
+    public String retrieveJSON() throws IOException {
         InputStream inUrl = new URL("https://www.cbr-xml-daily.ru/latest.js").openStream();
         String retrievedJSON = readAllByByte(inUrl);
-        JSONParser currencyParser = new JSONParser(retrievedJSON);
-        ExcelExport excelExport = new ExcelExport(currencyParser.currencyToRUB, currencyParser.RUBtoCurrency);
-        saveRetrievedJSON(retrievedJSON);
-        excelExport.exportToExcel();
+
         inUrl.close();
-        CurrencyComparator.compareCurrencies(currencyParser);
+
         //JSONObject jsonObject = parser.parse(inUrl)
+        return retrievedJSON;
     }
 
     public static String readAllByByte(InputStream in) throws IOException {
@@ -27,23 +23,13 @@ public class JSONRetriever {
                 //System.out.print((char) oneByte);
                 jsonString.append((char) oneByte);
             } else {
-                System.out.println("\nend");
+                //System.out.println("\nend");
                 break;
             }
         }
-        System.out.println(jsonString);
+        //System.out.println(jsonString);
         return jsonString.toString();
     }
 
-    public static void saveRetrievedJSON(String string) {
-        String filepath = "./latest.json";
-        byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
-        try (FileOutputStream outputStream = new FileOutputStream(filepath)) {
-            for (byte oneByte : bytes) {
-                outputStream.write(oneByte);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
